@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: radha-ai-calling-agent
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_FROM_NUMBER
+        sync: false
+      - key: PUBLIC_BASE_URL
+        sync: false
+      - key: RADHA_NAME
+        value: Radha
+      - key: RADHA_FIRST_QUESTION
+        value: Where is your husband?
